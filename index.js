@@ -25,6 +25,8 @@ var open_connections = 0;
 var players_online = 0;
 var clients = {};
 
+
+
 pg.connect(conString, function(err, client, done) {
     if (err != null) { console.log(err); }
     client.query("UPDATE accounts SET logged_in=FALSE", function(err) {
