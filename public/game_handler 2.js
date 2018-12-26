@@ -14,8 +14,6 @@ function runGame() {
             273);
         game.load.spritesheet("fireball", "images/fireball.png", 64, 64,
             64);
-        game.load.spritesheet("swing", "images/swing.png", 64, 64,
-            1);
         game.load.image('healthBar', 'images/health.png');
         game.load.audio("backGroundMusic", "music/ComeandFindMe.mp3");
         game.load.image("tree", "images/tree.png");
@@ -38,7 +36,6 @@ function create() {
     player.body.collideWorldBounds = true;
 
     fireballs = game.add.physicsGroup();
-    swings = game.add.physicsGroup();
 
     player.body.setSize(32, 48, 16, 14);
 
@@ -60,7 +57,14 @@ function create() {
     game.camera.follow(player);
 
     bounds = game.add.physicsGroup();
-
+    for (var i = -30; i < 3200; i += 90) { //horizontal bounds
+        bounds.create(i, -30, "tree");
+        bounds.create(i, 2310, "tree");
+    }
+    for (var i = 60; i < 2300; i += 90) { //vertical bounds
+        bounds.create(-30, i, "tree");
+        bounds.create(3120, i, "tree");
+    }
     
     var counter = 2100;
 
@@ -91,8 +95,7 @@ var dir = "";
 var isMoving = false;
 var attack = null;
 var lastShot = new Date().getTime();
-    function update() {
-
+function update() {
     if (game.physics.arcade.collide(player, fireballs,
         function(player, fireball) {
             player.children[1].crop(new Phaser.Rectangle(0, 0, 
@@ -105,33 +108,9 @@ var lastShot = new Date().getTime();
         }, this)) {
         //empty
     }
-
-
-
-    if (game.physics.arcade.collide(swings, bounds,
-        function(swing, bound) {
-            //player.children[1].crop(new Phaser.Rectangle(0, 0, 
-              //  player.children[1].width - 3, 11));
-            //socket.emit("takeDamage", { id: id });
-          //  bound.body.angle=90;
-          //  bound.body.angle=90;
-          bound.anchor.setTo(0.1, 0.1);
-          bound.angle = 90;
-            
-
-        },
-        function(player, fireball) {
-            return true;
-        }, this)) {
-        //empty
-    }
     player.body.velocity.x = 0;
     player.body.velocity.y = 0;
-
     game.physics.arcade.collide(player, bounds);
-
-    
-
     if (leftKey.isDown) {
         player.body.velocity.x = -150;
         player.animations.play("left");
@@ -166,23 +145,11 @@ var lastShot = new Date().getTime();
         else if (dir === "right") { xOffset += 32; }
         else if (dir === "up") { yOffset -= 32; }
         else { yOffset += 32; }
-
-   
-
-        
-
-        var swing = swings.create(xOffset, yOffset,
-            "swing", 1);
-            //swing.body.setSize(130, 130, 150, 150);          
-            if (dir === "left") { swing.body.velocity.x = -600; }
-            else if (dir === "right") { swing.body.velocity.x   = 600; }
-            else if (dir === "up") { swing.body.velocity.y = -600; }
-            else { swing.body.velocity.y = 600; }
-
+        var strikeHitbox = fireballs.create(xOffset, yOffset,
+            "player", 7);
         setTimeout(function() {
-            swing.kill();
-        }, 50);
-
+            strikeHitbox.kill();
+        }, 70);
     } else if (kKey.isDown) {
         var now = new Date().getTime();
         if (now - lastShot > FIREBALL_COOLDOWN) {
@@ -289,8 +256,8 @@ socket.on("updatePlayerPosition", function(data) {
             else if (data.direction === "right") { xOffset += 32; }
             else if (data.direction === "up") { yOffset -= 32; }
             else { yOffset += 32; }
-            var strikeHitbox = swings.create(xOffset, yOffset,
-                "swing", 7);
+            var strikeHitbox = fireballs.create(xOffset, yOffset,
+                "player", 7);
             setTimeout(function() {
                 strikeHitbox.kill();
             }, 70);
