@@ -45,7 +45,7 @@ $(document).on("click", "#forgotPwd", function(e) {
     var $f = $("<form id='forgotPwdForm'></form>");
     $f.append("<p>Enter the email you used to register</p>");
     $f.append("<input type='text' maxlength='64' id='forgotPwdEmail' " +
-        "pattern='^.*@.*$' placeholder='Email' required><br>");
+        "pattern='^.*@.*$' placeholder='Email' required>");
     $f.append("<button type='button' id='closeForgotPwd'>Back</button>");
     $f.append("<button type='submit' id='submitForgotPwd'>OK</button>");
     $("#loadPageForms").append($f);
@@ -74,13 +74,13 @@ $(document).on("click", "#register", function(e) {
     $("#forgotPwd").hide();
     var $f = $("<form id='registerForm'></form>");
     $f.append("<input type='text' maxlength='64' id='registerUsn' " +
-        "pattern='^[A-Za-z0-9]+$' placeholder='Username' required><br>");
+        "pattern='^[A-Za-z0-9]+$' placeholder='Username' required>");
     $f.append("<input type='password' id='registerPwd' " +
-        "placeholder='Password' required><br>");
+        "placeholder='Password' required>");
     $f.append("<input type='text' maxlength='64' id='registerEmail' " +
-        "pattern='^.*@.*$' placeholder='Email' required><br>");
-    $f.append("<button type='button' id='closeRegister'>Back</button>");
-    $f.append("<button type='submit' id='submitRegister'>OK</button>");
+        "pattern='^.*@.*$' placeholder='Email' required>");
+    $f.append("<span type='button' id='closeRegister'>« Go Back</span>");
+    $f.append("<button type='submit' id='submitRegister'>Create New Account</button>");
     $("#loadPageForms").append($f);
     $("#registerUsn").focus();
     $f.submit(function(e) {
@@ -207,9 +207,9 @@ socket.on("loginResponse", function(data) {
 //Close window handler
 $(window).on("beforeunload", function() {
     if (id > 0) { player.destroy(); }
-    socket.emit("closeWindow", { 
+    socket.emit("closeWindow", {
         username: username,
-        id: id 
+        id: id
     });
 });
 

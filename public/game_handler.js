@@ -1,5 +1,5 @@
 var playerStorage = {};
-var FIREBALL_COOLDOWN = 3000;
+var FIREBALL_COOLDOWN = 1000;
 
 var bounds;
 var game;
@@ -17,7 +17,7 @@ function runGame() {
         game.load.spritesheet("swing", "images/swing.png", 64, 64,
             1);
         game.load.image('healthBar', 'images/health.png');
-        game.load.audio("backGroundMusic", "music/ComeandFindMe.mp3");
+        game.load.audio("backGroundMusic", "music/bgmusic.mp3");
         game.load.image("tree", "images/tree.png");
     }
 }
@@ -33,7 +33,7 @@ function create() {
     player = game.add.sprite(
         Math.floor((Math.random() * 3200) + 1),
         Math.floor((Math.random() * 2400) + 1), "player", 130);
-    
+
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
 
@@ -50,18 +50,18 @@ function create() {
     kKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
 
     loadAnimationFrames(player);
-    
+
     // add nametag
     // todo: center this properly
     player.addChild(game.make.text(10, -30, username, {fontSize: 16}));
     player.addChild(game.make.sprite(10, -10, "healthBar"));
-    
+
 
     game.camera.follow(player);
 
     bounds = game.add.physicsGroup();
 
-    
+
     var counter = 2100;
 
     for (var i = 300; i < 2100; i += 100)
@@ -73,9 +73,9 @@ function create() {
             bounds.create (i, 1500, "tree");
             bounds.create (1200, i, "tree");
         }
-        
+
         counter -= 100;
-    } 
+    }
 
     bounds.forEach(function(tree) {
         tree.body.immovable = true;
@@ -95,7 +95,7 @@ var lastShot = new Date().getTime();
 
     if (game.physics.arcade.collide(player, fireballs,
         function(player, fireball) {
-            player.children[1].crop(new Phaser.Rectangle(0, 0, 
+            player.children[1].crop(new Phaser.Rectangle(0, 0,
                 player.children[1].width - 3, 11));
             socket.emit("takeDamage", { id: id });
             fireball.kill();
@@ -110,14 +110,14 @@ var lastShot = new Date().getTime();
 
     if (game.physics.arcade.collide(swings, bounds,
         function(swing, bound) {
-            //player.children[1].crop(new Phaser.Rectangle(0, 0, 
+            //player.children[1].crop(new Phaser.Rectangle(0, 0,
               //  player.children[1].width - 3, 11));
             //socket.emit("takeDamage", { id: id });
           //  bound.body.angle=90;
           //  bound.body.angle=90;
           bound.anchor.setTo(0.1, 0.1);
           bound.angle = 90;
-            
+
 
         },
         function(player, fireball) {
@@ -130,7 +130,7 @@ var lastShot = new Date().getTime();
 
     game.physics.arcade.collide(player, bounds);
 
-    
+
 
     if (leftKey.isDown) {
         player.body.velocity.x = -150;
@@ -167,13 +167,13 @@ var lastShot = new Date().getTime();
         else if (dir === "up") { yOffset -= 32; }
         else { yOffset += 32; }
 
-   
 
-        
+
+
 
         var swing = swings.create(xOffset, yOffset,
             "swing", 1);
-            //swing.body.setSize(130, 130, 150, 150);          
+            //swing.body.setSize(130, 130, 150, 150);
             if (dir === "left") { swing.body.velocity.x = -600; }
             else if (dir === "right") { swing.body.velocity.x   = 600; }
             else if (dir === "up") { swing.body.velocity.y = -600; }
@@ -222,7 +222,7 @@ var lastShot = new Date().getTime();
             fireballs,
             function(player, fireball) {
                 fireball.kill();
-                playerStorage[p].children[1].crop(new Phaser.Rectangle(0, 0, 
+                playerStorage[p].children[1].crop(new Phaser.Rectangle(0, 0,
                 playerStorage[p].children[1].width - 3, 11));
             },
             function() {
@@ -314,13 +314,13 @@ socket.on("updatePlayerPosition", function(data) {
             if (data.direction === "left") {
                 playerStorage[data.id].frame = 117;
             } else if (data.direction === "right") {
-                playerStorage[data.id].frame = 143;            
+                playerStorage[data.id].frame = 143;
             } else if (data.direction === "up") {
-                playerStorage[data.id].frame = 104;            
+                playerStorage[data.id].frame = 104;
             } else {
-                playerStorage[data.id].frame = 130;            
+                playerStorage[data.id].frame = 130;
             }
-            playerStorage[data.id].animations.stop();        
+            playerStorage[data.id].animations.stop();
         }
     }
 });

@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Combat Life</title>
+        <title>Zenzo Eternal | Live Action PVP Arena</title>
         <link rel="stylesheet" href="nodemmo.css"/>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
-        <link rel="icon" type="image/png" href="favicon.png"/>
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,600,700" rel="stylesheet">
+        <link rel="icon" href="https://zenzo.io/wp-content/uploads/2018/08/cropped-ZENZO.io-Favicon-32x32-01-32x32.png" sizes="32x32" />
+        <link rel="icon" href="https://zenzo.io/wp-content/uploads/2018/08/cropped-ZENZO.io-Favicon-32x32-01-192x192.png" sizes="192x192" />
+        <link rel="apple-touch-icon-precomposed" href="https://zenzo.io/wp-content/uploads/2018/08/cropped-ZENZO.io-Favicon-32x32-01-180x180.png" />
+        <meta name="msapplication-TileImage" content="https://zenzo.io/wp-content/uploads/2018/08/cropped-ZENZO.io-Favicon-32x32-01-270x270.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
+
+    <body class="fade-in">
         <div id="logo"><img src="logo.png"></div><br><br>
 
         <h2 id="connectionCount"></h2>
-        <h2 id="playerCount">Players online: </h2>
+        <h2 class="main-title" id="playerCount">Players online: </h2>
         <div id="userInfo"></div>
 
         <div id="game">
             <div id="loadPageOptions">
-                <div class="logoSm"><img src="logo.png"></div>
+                <!-- <div class="logoSm"><img src="logoSm.png"></div> -->
                 <div id="loadPageForms">
                     <form id="loginForm">
-                        <input type="text" id="loginUsn" placeholder="Username"><br>
-                        <input type="password" id="loginPwd" placeholder="Password"><br>
-                        <button type="submit" id="submitLogin">OK</button>
+                        <input type="text" id="loginUsn" placeholder="Username">
+                        <input style="border-top: 2px solid #d1d1d1 !important;" type="password" id="loginPwd" placeholder="Password">
+                        <button type="submit" id="submitLogin">Login</button>
                     </form>
-                    <br>
+                    <div class="reg-forgot">
                     <span id="noAccount">
-                        Don't have an account?
-                        <button type="button" id="register">Register</button>
+                        <span type="button" id="register">Register</span>
                     </span>
-                    <br><br>
                     <span id="forgotPwd">
-                        Forgot your password?
+                        Forgot Password?
                     </span>
+                  </div>
                 </div>
             </div>
         </div>

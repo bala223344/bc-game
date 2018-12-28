@@ -8,8 +8,8 @@ var crypto = require("crypto");
 
 //DB
 var pg = require("pg");
-var conString = "postgresql://postgres:password@localhost:5432/MMO";
-var client = new pg.Client("postgresql://postgres:password@localhost:5432/MMO");
+var conString = "postgresql://postgres:password@localhost:5432/bc";
+var client = new pg.Client("postgresql://postgres:password@localhost:5432/bc");
 
 //Email
 //var transporter = require("nodemailer").createTransport(config.email);
