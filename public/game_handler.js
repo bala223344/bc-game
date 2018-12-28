@@ -11,7 +11,7 @@ function runGame() {
     function preload() {
         game.load.image("background", "images/maplg.png");
         game.load.spritesheet("player", "images/character.png", 64, 64,
-            273);
+            32);
         game.load.spritesheet("fireball", "images/fireball.png", 64, 64,
             64);
         game.load.spritesheet("swing", "images/swing.png", 64, 64,
@@ -234,14 +234,12 @@ var lastShot = new Date().getTime();
 }
 
 function loadAnimationFrames(mapObject) {
-    mapObject.animations.add("left", [118, 119, 120, 121, 122, 123,
-        124, 125], 15, true);
-    mapObject.animations.add("right", [144, 145, 146, 147, 148, 149,
-        150, 151], 15, true);
-    mapObject.animations.add("up", [105, 106, 107, 108, 109, 110,
-        111,112], 15, true);
-    mapObject.animations.add("down", [131, 132, 133, 134, 135, 136,
-        137, 138], 15, true);
+    mapObject.animations.add("left", [16,17,18, 19, 20, 21, 22, 23
+        ], 15, true) ;
+    mapObject.animations.add("right", [8, 9, 10, 11, 12, 13, 14,
+        15], 15, true);
+    mapObject.animations.add("up", [0,1,2,3,4,5,6,7], 15, true);
+    mapObject.animations.add("down", [24,25,26,27,28,29,30,31], 15, true);
 
     mapObject.animations.add("thrust_left", [66, 67, 68, 69, 70, 71, 72],
         15, true);
