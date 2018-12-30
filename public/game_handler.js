@@ -70,7 +70,7 @@ function create() {
     rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
     upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-    jKey = game.input.keyboard.addKey(Phaser.Keyboard.J);
+    jKey = game.input.keyboard.addKey(Phaser.Keyboard.SHIFT);
     kKey = game.input.keyboard.addKey(Phaser.Keyboard.K);
 
     jKey.onDown.add(countChop, this);
