@@ -106,7 +106,7 @@ function create() {
     bounds.forEach(function(tree) {
         
         tree.body.immovable = true;
-        tree.body.setSize(50, 80, 35, 50);
+        tree.body.setSize(50, 80, 15, 10);
         
     });
 
