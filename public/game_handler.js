@@ -24,6 +24,8 @@ function runGame() {
         game.load.audio("backGroundMusic", "music/bgmusic.mp3");
         game.load.image("tree", "images/tree.png");
         game.load.image("blocks", "images/blocks.png");
+        game.load.image("stump", "images/stump.png");
+
 
     }
 }
@@ -36,14 +38,19 @@ function countChop() {
             if(treeChopCounter == 3) {
                 var xOffset = player.x;
                 var yOffset = player.y;
-
-               if (lastMovedDir === "left") { xOffset -= 100; }
-        else if (lastMovedDir === "right") { xOffset += 50; }
-        else if (lastMovedDir === "up") { yOffset -= 100; }
-        else { yOffset += 70; }
-               var block = blocks.create(xOffset, yOffset , "blocks")
+                stumpX = xOffset
+                stumpY = yOffset
+                console.log(stumpX);
+                
+               if (lastMovedDir === "left") { stumpX = xOffset -= 70; yOffset += 20; stumpY += 50; }
+                else if (lastMovedDir === "right") { stumpX +=40;  xOffset += 80;  yOffset += 10; stumpY += 50; }
+                else if (lastMovedDir === "up") {  stumpX =  xOffset -= 20;  yOffset -= 90; stumpY -= 30; }
+                else { stumpX =  xOffset -= 20;  yOffset += 70; stumpY += 100; }
+                    var block = blocks.create(xOffset, yOffset , "blocks")
                block.body.immovable = true;
-              //  blocks.create(treeChopCounter.x, treeChopCounter.y, "blocks")
+
+               var stump = stumps.create(stumpX, stumpY , "stump")
+               stump.body.immovable = true;
                 lastCollidedTree.kill()
             }
 
@@ -64,7 +71,7 @@ function create() {
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
     blocks = game.add.physicsGroup();
-
+    stumps = game.add.physicsGroup();
 
 
     fireballs = game.add.physicsGroup();
@@ -176,8 +183,7 @@ function create() {
     if (leftKey.isDown) {
         player.body.velocity.x = -250;
         player.animations.play("left");
-       // lastMovedDir =
-         dir = "left";
+        lastMovedDir =  dir = "left";
         isMoving = true;
         attack = false;
 
@@ -188,8 +194,7 @@ function create() {
     } else if (rightKey.isDown) {
         player.body.velocity.x = 250;
         player.animations.play("right");
-       // lastMovedDir = 
-        dir = "right";
+        lastMovedDir = dir = "right";
         isMoving = true;
         attack = false;
         lastCollidedTree = null;
@@ -198,8 +203,7 @@ function create() {
     } else if (upKey.isDown) {
         player.body.velocity.y = -250;
         player.animations.play("up");
-        //lastMovedDir = 
-        dir = "up";
+        lastMovedDir = dir = "up";
         isMoving = true;
         attack = false;
         lastCollidedTree = null;
@@ -208,8 +212,7 @@ function create() {
     } else if (downKey.isDown) {
         player.body.velocity.y = 250;
         player.animations.play("down");
-        //lastMovedDir =
-         dir = "down";
+        lastMovedDir = dir = "down";
         isMoving = true;
         attack = false;
         lastCollidedTree = null;
