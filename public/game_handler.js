@@ -39,13 +39,13 @@ function runGame() {
 
 
 function countChop() {
-       
+
         if(lastCollidedTree) {
             treeChopCounter++;
             if(treeChopCounter == 3) {
                 var xOffset = player.x;
                 var yOffset = player.y;
-              
+
                if (lastMovedDir === "left") { xOffset -= 100; }
         else if (lastMovedDir === "right") { xOffset += 50; }
         else if (lastMovedDir === "up") { yOffset -= 100; }
@@ -55,7 +55,7 @@ function countChop() {
               //  blocks.create(treeChopCounter.x, treeChopCounter.y, "blocks")
                 lastCollidedTree.kill()
             }
-            
+
         }
 }
 function create() {
@@ -74,7 +74,7 @@ function create() {
     player.body.collideWorldBounds = true;
     blocks = game.add.physicsGroup();
 
-    
+
 
     fireballs = game.add.physicsGroup();
    // swings = game.add.physicsGroup();
@@ -119,10 +119,10 @@ function create() {
     }
 
     bounds.forEach(function(tree) {
-        
+
         tree.body.immovable = true;
         tree.body.setSize(50, 80, 15, 10);
-        
+
     });
 
     socket.emit("joinGame", { id: id, usn: username,
@@ -148,7 +148,7 @@ function create() {
 
     if (game.physics.arcade.collide(player, blocks,
         function(player, block) {
-            
+
             block.kill();
         },
         function(player, block) {
@@ -157,31 +157,31 @@ function create() {
         //empty
     }
 
-    
 
 
 
 
-   
+
+
     player.body.velocity.x = 0;
     player.body.velocity.y = 0;
 
 
 
-    if (game.physics.arcade.collide(player, bounds, 
+    if (game.physics.arcade.collide(player, bounds,
         function(player, tree) {
             lastCollidedTree =  tree
-           
+
         },
         function(player, tree) {
-            
+
             return true;
         }, this)) {
-            
+
     }
 
     if (leftKey.isDown) {
-        player.body.velocity.x = -150;
+        player.body.velocity.x = -250;
         player.animations.play("left");
        // lastMovedDir =
          dir = "left";
@@ -190,10 +190,10 @@ function create() {
 
         lastCollidedTree = null;
         treeChopCounter = 0;
-        
-        
+
+
     } else if (rightKey.isDown) {
-        player.body.velocity.x = 150;
+        player.body.velocity.x = 250;
         player.animations.play("right");
        // lastMovedDir = 
         dir = "right";
@@ -203,7 +203,7 @@ function create() {
         treeChopCounter = 0;
 
     } else if (upKey.isDown) {
-        player.body.velocity.y = -150;
+        player.body.velocity.y = -250;
         player.animations.play("up");
         //lastMovedDir = 
         dir = "up";
@@ -213,7 +213,7 @@ function create() {
         treeChopCounter = 0;
 
     } else if (downKey.isDown) {
-        player.body.velocity.y = 150;
+        player.body.velocity.y = 250;
         player.animations.play("down");
         //lastMovedDir =
          dir = "down";
@@ -236,12 +236,12 @@ function create() {
         else if (dir === "right") { xOffset += 32; }
         else if (dir === "up") { yOffset -= 32; }
         else { yOffset += 32; }
-      
-    
 
-     
 
-    } 
+
+
+
+    }
     else if (kKey.isDown) {
         var now = new Date().getTime();
         if (now - lastShot > FIREBALL_COOLDOWN) {

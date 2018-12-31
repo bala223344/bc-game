@@ -46,8 +46,8 @@ $(document).on("click", "#forgotPwd", function(e) {
     $f.append("<p>Enter the email you used to register</p>");
     $f.append("<input type='text' maxlength='64' id='forgotPwdEmail' " +
         "pattern='^.*@.*$' placeholder='Email' required>");
-    $f.append("<button type='button' id='closeForgotPwd'>Back</button>");
     $f.append("<button type='submit' id='submitForgotPwd'>OK</button>");
+    $f.append("<span type='button' id='closeForgotPwd'>« Back</span>");
     $("#loadPageForms").append($f);
     $("#forgotPwdEmail").focus();
     $f.submit(function(e) {
@@ -79,8 +79,8 @@ $(document).on("click", "#register", function(e) {
         "placeholder='Password' required>");
     $f.append("<input type='text' maxlength='64' id='registerEmail' " +
         "pattern='^.*@.*$' placeholder='Email' required>");
-    $f.append("<span type='button' id='closeRegister'>« Go Back</span>");
     $f.append("<button type='submit' id='submitRegister'>Create New Account</button>");
+    $f.append("<span type='button' id='closeRegister'>« Go Back</span>");
     $("#loadPageForms").append($f);
     $("#registerUsn").focus();
     $f.submit(function(e) {
@@ -175,7 +175,7 @@ socket.on("loginResponse", function(data) {
         if (data.admin) { $("#connectionCount").show(); }
 
         $("#chat").show();
-        var message = "Welcome to Combat Life!";
+        var message = "Welcome to Zenzo Eternal!";
         log(message, {
             prepend: true
             });
