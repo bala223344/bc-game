@@ -46,11 +46,13 @@ function countChop() {
                 else if (lastMovedDir === "right") { stumpX +=40;  xOffset += 80;  yOffset += 10; stumpY += 50; }
                 else if (lastMovedDir === "up") {  stumpX =  xOffset -= 20;  yOffset -= 90; stumpY -= 30; }
                 else { stumpX =  xOffset -= 20;  yOffset += 70; stumpY += 100; }
-                    var block = blocks.create(xOffset, yOffset , "blocks")
+                var block = blocks.create(xOffset, yOffset , "blocks")
                block.body.immovable = true;
 
                var stump = stumps.create(stumpX, stumpY , "stump")
                stump.body.immovable = true;
+               player.bringToTop()
+               //stump.sendToBack()
                 lastCollidedTree.kill()
             }
 
