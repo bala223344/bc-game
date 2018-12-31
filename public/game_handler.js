@@ -231,12 +231,7 @@ function create() {
         else { yOffset += 32; }
 
         
-        var strikeHitbox = fireballs.create(xOffset, yOffset,
-            "player", 7);
-        setTimeout(function() {
-            strikeHitbox.kill();
-        }, 70);
-
+     
 
 
 
