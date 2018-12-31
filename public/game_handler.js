@@ -94,25 +94,25 @@ function create() {
     bounds = game.add.physicsGroup();
 
 
-    var counter = 4100;
+    var counter = 6100;
 
-    for (var i = 300; i < 4100; i += 200)
+    for (var i = 300; i < 6100; i += 400)
     {
-        if (!(i >= 1200 &&  i <= 1400))
+        if (!(i >= 1400 &&  i <= 1600))
         {
             bounds.create(i, i, "tree");
             bounds.create (counter, i, "tree");
-            bounds.create (i, 1500, "tree");
-            bounds.create (1200, i, "tree");
+            bounds.create (i, 1800, "tree");
+            bounds.create (1400, i, "tree");
         }
 
-        counter -= 200;
+        counter -= 400;
     }
 
     bounds.forEach(function(tree) {
 
         tree.body.immovable = true;
-        tree.body.setSize(50, 80, 15, 10);
+        tree.body.setSize(100, 140, 5, 15);
 
     });
 
