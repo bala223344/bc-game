@@ -1,5 +1,5 @@
 * {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'VT323', monospace;
 }
 html {
     overflow: scroll;
@@ -11,7 +11,7 @@ html {
 }
 /* optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+    background: transparent;
 }
 form{
   width: 300px;
@@ -37,7 +37,6 @@ a{
 }
 
 #logo img {
-    padding-top: 25px;
     width: 450px;
     display: block;
     margin: auto;
@@ -51,7 +50,8 @@ a{
 body {
     color: #4f4f4f;
     background: #fff;
-    margin: 0px;
+    letter-spacing: .05rem;
+    margin: 25px 0 25px 0;
 }
 .main-title{
   font-weight: 700;
@@ -75,27 +75,42 @@ body {
     height: 600px;
     left: 0;
     right: 0;
+    margin: auto;
 }
 #noAccount, #forgotPwd{
   color: #fff;
-  padding: .25rem;
+  padding: 0 .25rem;
 }
 #playerCount{
   text-align: center;
 }
 
 #loadPageForms{
-width: 100%;
-margin: 40px auto 25px auto
+    width: 100%;
+    margin: 40px auto 25px auto
 }
 
 #messages {
-  list-style: none;
-  height: 93%;
-  margin: 0;
-  overflow-y: scroll;
-  padding: 9px 15px 9px 15px;
+    list-style: none;
+    margin: 0;
+    padding: 9px 15px 9px 15px;
+    color: #fff;
+    max-height: 75px;
+    overflow-y: auto;
+    margin-top: 5px;
 }
+/* messages v2 */
+/* #messages {
+  list-style: none;
+  margin: 0;
+  padding: 9px 15px 9px 15px;
+  color: #fff;
+  max-height: 75px;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-top: 5px;
+  z-index: -1;
+} */
 
 #loadPageOptions {
     z-index: 3;
@@ -109,6 +124,8 @@ margin: 40px auto 25px auto
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+    border-top: 1px solid rgba(79, 79, 79, 0.50);
+        border-bottom: 1px solid rgba(79, 79, 79, 0.25);
 }
 
 #loadPageOptions button {
@@ -148,6 +165,7 @@ margin: 40px auto 25px auto
   margin: auto;
 }
 #registerForm button {
+    margin-bottom: 20px;
 }
 
 #register{
@@ -177,35 +195,33 @@ margin: 40px auto 25px auto
 
 #fadingMsg {
     position: absolute;
-    color: #586E75;
+    color: #ffc451;
 }
 
 /* chat */
 #chat {
-    width: 300px;
-    height: 600px;
-    background-color: #FFFFFF;
+    position: absolute;
+    bottom: 0;
     left: 0;
     right: 0;
-    float: right;
-    margin-top: -620px;
-    border:5px solid #586e75;
+    width: 800px;
+    margin: auto;
 }
 
 #inputMessage {
-  height: auto;
-  left: 0;
-  outline: none;
-  right: 0;
-  width: 297px;
-  margin-top: -30px;
+    height: auto;
+    left: 0;
+    outline: none;
+    right: 0;
+    width: 100%;
+    text-align: left;
+    text-indent: 15px;
 }
 
 .log {
-  color: gray;
-  font-size: 70%;
-  margin: 5px;
-  text-align: center;
+    color: #ffc451;
+    font-size: 70%;
+    text-align: left;
 }
 
 .fade-in {
@@ -342,9 +358,6 @@ input:-webkit-autofill {
     -webkit-text-fill-color: #4f4f4f !important;
 }
 .reg-forgot{
-  padding-top: 20px;
-  font-weight: 600;
-  opacity: .85;
 }
 
 #registerPwd{
@@ -353,7 +366,6 @@ input:-webkit-autofill {
 
 #registerEmail{
   border-top: 2px solid #d1d1d1 !important;
-  margin-bottom: 20px !important;
 }
 
 #closeRegister {
@@ -361,7 +373,7 @@ input:-webkit-autofill {
   opacity: .85;
   cursor: pointer;
   color: #fff;
-  padding: .25rem;
+  padding: 0 .25rem;
 }
 
 #submitRegister{
@@ -373,9 +385,14 @@ input:-webkit-autofill {
 
 #forgotPwdForm{
   font-weight: 600;
-  opacity: .85;
   cursor: pointer;
   color: #fff;
-  padding: .25rem;
+}
 
+#submitLogin{
+  margin-bottom: 20px;
+}
+
+#submitForgotPwd{
+    margin-bottom: 20px;
 }
