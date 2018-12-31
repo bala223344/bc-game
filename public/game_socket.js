@@ -35,11 +35,11 @@ socket.on("updatePlayerPosition", function(data) {
             else if (data.direction === "right") { xOffset += 32; }
             else if (data.direction === "up") { yOffset -= 32; }
             else { yOffset += 32; }
-            var strikeHitbox = swings.create(xOffset, yOffset,
-                "swing", 7);
-            setTimeout(function() {
-                strikeHitbox.kill();
-            }, 70);
+            // var strikeHitbox = swings.create(xOffset, yOffset,
+            //     "swing", 7);
+            // setTimeout(function() {
+            //     strikeHitbox.kill();
+            // }, 70);
         } else if (data.attack === "shoot_") {
             if (data.direction === "left") { index = 0; }
             else if (data.direction === "right") { index = 32; }
