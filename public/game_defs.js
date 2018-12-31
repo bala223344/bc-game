@@ -16,3 +16,4 @@ function loadAnimationFrames(mapObject) {
     mapObject.animations.add("thrust_down", [27, 28],
         15, true);
 }
+
