@@ -32,7 +32,7 @@ socket.on("updatePlayerPosition", function(data) {
                 ,
                 playerStorage[data.id].y, "gravestone");
                 gravestone.animations.add("dead", [0,1,2,3],
-               1, true);   
+               1, false);   
             gravestone.animations.play("dead")
         }
         if (data.moving) {
@@ -96,7 +96,7 @@ socket.on("killPlayer", function(data) {
             ,
             playerStorage[data.id].y, "gravestone");
             gravestone.animations.add("dead", [0,1,2,3],
-           1, true);   
+           1, false);   
         gravestone.animations.play("dead")
         
         player.bringToTop()
