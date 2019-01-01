@@ -1,5 +1,5 @@
 var playerStorage = {};
-var FIREBALL_COOLDOWN = 3000;
+var FIREBALL_COOLDOWN = 000;
 
 var bounds;
 var game;
