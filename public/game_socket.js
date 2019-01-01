@@ -23,7 +23,18 @@ socket.on("spawnPlayer", function(data) {
 socket.on("updatePlayerPosition", function(data) {
     if (id > 0) {
         if (data.id === id) { return; }
+        console.log(data);
         playerStorage[data.id].position = data.position;
+        //probably player dead 
+        if(!playerStorage[data.id]) {
+            gravestone = game.add.sprite(
+                playerStorage[data.id].x
+                ,
+                playerStorage[data.id].y, "gravestone");
+                gravestone.animations.add("dead", [0,1,2,3],
+               1, true);   
+            gravestone.animations.play("dead")
+        }
         if (data.moving) {
             playerStorage[data.id].animations.play(data.direction);
         } else if (data.attack === "thrust_") {
@@ -80,22 +91,35 @@ socket.on("removePlayer", function(data) {
 
 socket.on("killPlayer", function(data) {
     if (data.id != id) {
+        gravestone = game.add.sprite(
+            playerStorage[data.id].x
+            ,
+            playerStorage[data.id].y, "gravestone");
+            gravestone.animations.add("dead", [0,1,2,3],
+           1, true);   
+        gravestone.animations.play("dead")
+
         playerStorage[data.id].kill();
+
         delete playerStorage[data.id];
         return;
     } else {
+       
+
+     
         player.kill();
         player = null;
-        player = game.add.sprite(
-            Math.floor((Math.random() * 3200) + 1),
-            Math.floor((Math.random() * 2400) + 1), "player", 130);
-        game.physics.arcade.enable(player);
-        player.body.collideWorldBounds = true;
-        loadAnimationFrames(player);
-        player.addChild(game.make.text(10, -30, username, {fontSize: 16}));
-        player.addChild(game.make.sprite(10, -10, "healthBar"));
-        game.camera.follow(player);
-        socket.emit("joinGame", { id: id, usn: username,
-            position: player.position });
+
+        // player = game.add.sprite(
+        //     Math.floor((Math.random() * 3200) + 1),
+        //     Math.floor((Math.random() * 2400) + 1), "player", 130);
+        // game.physics.arcade.enable(player);
+        // player.body.collideWorldBounds = true;
+        // loadAnimationFrames(player);
+        // player.addChild(game.make.text(10, -30, username, {fontSize: 16}));
+        // player.addChild(game.make.sprite(10, -10, "healthBar"));
+        // game.camera.follow(player);
+        // socket.emit("joinGame", { id: id, usn: username,
+        //     position: player.position });
     }
 });

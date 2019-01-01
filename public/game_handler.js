@@ -1,9 +1,3 @@
-var playerStorage = {};
-var FIREBALL_COOLDOWN = 3000;
-
-var bounds;
-var game;
-var blocks;
 
 
 
@@ -18,8 +12,8 @@ function runGame() {
             32);
         game.load.spritesheet("fireball", "images/fireball.png", 64, 64,
             64);
-       // game.load.spritesheet("swing", "images/swing.png", 64, 64,
-      //      1);
+        game.load.spritesheet("gravestone", "images/gravestone.png", 111, 90,
+            4);
         game.load.image('healthBar', 'images/health.png');
         game.load.audio("backGroundMusic", "music/bgmusic.mp3");
         game.load.image("tree", "images/tree.png");
@@ -40,7 +34,6 @@ function countChop() {
                 var yOffset = player.y;
                 stumpX = xOffset
                 stumpY = yOffset
-                console.log(stumpX);
                 
                if (lastMovedDir === "left") { stumpX = xOffset -= 70; yOffset += 20; stumpY += 50; }
                 else if (lastMovedDir === "right") { stumpX +=40;  xOffset += 80;  yOffset += 10; stumpY += 50; }
@@ -52,7 +45,6 @@ function countChop() {
                var stump = stumps.create(stumpX, stumpY , "stump")
                stump.body.immovable = true;
                player.bringToTop()
-               //stump.sendToBack()
                 lastCollidedTree.kill()
             }
 
@@ -70,6 +62,9 @@ function create() {
         Math.floor((Math.random() * 3200) + 1),
         Math.floor((Math.random() * 2400) + 1), "player", 130);
 
+      
+
+            
     game.physics.arcade.enable(player);
     player.body.collideWorldBounds = true;
     blocks = game.add.physicsGroup();
@@ -91,6 +86,9 @@ function create() {
     shiftKey.onDown.add(countChop, this);
 
     loadAnimationFrames(player);
+    
+
+  
 
     // add nametag
     // todo: center this properly
