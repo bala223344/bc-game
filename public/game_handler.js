@@ -1,5 +1,5 @@
 var playerStorage = {};
-var FIREBALL_COOLDOWN = 3000;
+var FIREBALL_COOLDOWN = 2000;
 
 var bounds;
 var game;
@@ -41,7 +41,7 @@ function countChop() {
                 stumpX = xOffset
                 stumpY = yOffset
                 console.log(stumpX);
-                
+
                if (lastMovedDir === "left") { stumpX = xOffset -= 70; yOffset += 20; stumpY += 50; }
                 else if (lastMovedDir === "right") { stumpX +=40;  xOffset += 80;  yOffset += 10; stumpY += 50; }
                 else if (lastMovedDir === "up") {  stumpX =  xOffset -= 20;  yOffset -= 90; stumpY -= 30; }
@@ -222,7 +222,7 @@ function create() {
 
     }
      else if (shiftKey.isDown) {
-        
+
 
         player.animations.play("thrust_" + dir);
         isMoving = false;
@@ -235,8 +235,8 @@ function create() {
         else if (dir === "up") { yOffset -= 32; }
         else { yOffset += 32; }
 
-        
-     
+
+
 
 
 
@@ -246,7 +246,7 @@ function create() {
         if (now - lastShot > FIREBALL_COOLDOWN) {
             lastShot = now;
             var index;
-            
+
             if (dir === "left") { index = 0; }
             else if (dir === "right") { index = 32; }
             else if (dir === "up") { index = 16; }
@@ -295,7 +295,3 @@ function create() {
         }
     }
 }
-
-
-
-

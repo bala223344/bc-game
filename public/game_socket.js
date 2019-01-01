@@ -10,7 +10,7 @@ socket.on("spawnPlayer", function(data) {
             p.body.setSize(32, 48, 16, 14);
             p.body.immovable = true;
             p.body.moves = false;
-            p.addChild(game.make.text(10, -30, data.name, {fontSize: 16}));
+            p.addChild(game.make.text(10, -30, data.name, {fontSize: 13}));
             p.addChild(game.make.sprite(10, -10, "healthBar"));
 
             playerStorage[data.id] = p;
@@ -92,7 +92,7 @@ socket.on("killPlayer", function(data) {
         game.physics.arcade.enable(player);
         player.body.collideWorldBounds = true;
         loadAnimationFrames(player);
-        player.addChild(game.make.text(10, -30, username, {fontSize: 16}));
+        player.addChild(game.make.text(10, -30, username, {fontSize: 13}));
         player.addChild(game.make.sprite(10, -10, "healthBar"));
         game.camera.follow(player);
         socket.emit("joinGame", { id: id, usn: username,
