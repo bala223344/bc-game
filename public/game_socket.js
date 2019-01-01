@@ -98,7 +98,9 @@ socket.on("killPlayer", function(data) {
             gravestone.animations.add("dead", [0,1,2,3],
            1, true);   
         gravestone.animations.play("dead")
-
+        
+        player.bringToTop()
+        //socket.emit("gravestoneplaced")
         playerStorage[data.id].kill();
 
         delete playerStorage[data.id];
