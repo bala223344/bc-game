@@ -109,19 +109,6 @@ socket.on("killPlayer", function(data) {
      
         player.kill();
         player = null;
-<<<<<<< HEAD
-        player = game.add.sprite(
-            Math.floor((Math.random() * 3200) + 1),
-            Math.floor((Math.random() * 2400) + 1), "player", 130);
-        game.physics.arcade.enable(player);
-        player.body.collideWorldBounds = true;
-        loadAnimationFrames(player);
-        player.addChild(game.make.text(10, -30, username, {fontSize: 13}));
-        player.addChild(game.make.sprite(10, -10, "healthBar"));
-        game.camera.follow(player);
-        socket.emit("joinGame", { id: id, usn: username,
-            position: player.position });
-=======
 
         // player = game.add.sprite(
         //     Math.floor((Math.random() * 3200) + 1),
@@ -134,6 +121,5 @@ socket.on("killPlayer", function(data) {
         // game.camera.follow(player);
         // socket.emit("joinGame", { id: id, usn: username,
         //     position: player.position });
->>>>>>> f4d310b52c06703478a13eec39e056839dc32bde
     }
 });
