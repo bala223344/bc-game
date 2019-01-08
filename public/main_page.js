@@ -67,50 +67,8 @@ $(document).on("click", "#forgotPwd", function(e) {
     });
 });
 
-//Event handler for registration
-$(document).on("click", "#register", function(e) {
-    $("#loginForm").hide();
-    $("#noAccount").hide();
-    $("#forgotPwd").hide();
-    var $f = $("<form id='registerForm'></form>");
-    $f.append("<input type='text' maxlength='64' id='registerUsn' " +
-        "pattern='^[A-Za-z0-9]+$' placeholder='Username' required>");
-    $f.append("<input type='password' id='registerPwd' " +
-        "placeholder='Password' required>");
-    $f.append("<input type='text' maxlength='64' id='registerEmail' " +
-        "pattern='^.*@.*$' placeholder='Email' required>");
-    $f.append("<button type='submit' id='submitRegister'>Create New Account</button>");
-    $f.append("<span type='button' id='closeRegister'>« Go Back</span>");
-    $("#loadPageForms").append($f);
-    $("#registerUsn").focus();
-    $f.submit(function(e) {
-        socket.emit("createAccount", {
-            usn: $("#registerUsn").val(),
-            pwd: $("#registerPwd").val(),
-            em: $("#registerEmail").val()
-        });
-        $("#registerForm").remove();
-        $("#loginForm").show();
-        $("#noAccount").show();
-        $("#forgotPwd").show();
-        return false; //don't reload document
-    });
-    $("#closeRegister").click(function() {
-        $("#registerForm").remove();
-        $("#loginForm").show();
-        $("#noAccount").show();
-        $("#forgotPwd").show();
-        $("#loginUsn").focus();
-    });
-});
 
-//Event handler for when server sends registration status response
-socket.on("registerResponse", function(data) {
-    if (data.status === "Username already exists") {
-        $("#loadPageOptions").show();
-    }
-    flashMessage(data.status);
-});
+
 
 //Change password handler
 var showChangePwd = false;

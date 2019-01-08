@@ -1,0 +1,41 @@
+<h2 id="connectionCount"></h2>
+  <h2 class="main-title" id="playerCount">Players online: </h2>
+  <!-- <div id="userInfo"></div> -->
+
+  <div id="game">
+    <div id="loadPageOptions">
+      <!-- <div class="logoSm"><img src="logoSm.png"></div> -->
+      <div id="loadPageForms">
+     
+        
+
+
+      </div>
+    </div>
+  </div>
+  <br>
+  <div id="chat">
+    <ul id="messages">
+    </ul>
+    <input type="text" id="inputMessage" placeholder="Type here to chat">
+  </div>
+  <script src="jquery-2.2.0.min.js"></script>
+  <script src="socket.io/socket.io.js"></script>
+  <script>
+    socket = io();
+    var id = -1;
+    var admin = false;
+    var username;
+    var ip = "";
+    var browser = "Unknown";
+    var player;
+  </script>
+  <script src="main_page.js"></script>
+  <script src="chat_handler.js"></script>
+  <script src="phaser.min.js"></script>
+  <script src="game_vars.js"></script>
+  <script src="game_defs.js"></script>
+
+  <script src="game_handler.js"></script>
+  <script src="game_socket.js"></script>
+
