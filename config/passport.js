@@ -30,7 +30,7 @@ const { Client } = require('pg')
     passport.use(new Strategy({
         clientID: '531729010137235456',
         clientSecret: 'ZlsXcZtGnhgmUwiKFEfqr-Q33IyDC57O',
-        callbackURL: 'http://localhost:8000/auth/discord/callback',
+        callbackURL: 'http://157.230.0.249/auth/discord/callback',
         scope: scopes
     }, function(accessToken, refreshToken, profile, done) {
         process.nextTick(function() {
