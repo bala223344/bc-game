@@ -61,6 +61,9 @@ console.log("Listening on port 8000");
 
 exports = module.exports = app;
 
+
+
+
 //Global variables
 var open_connections = 0;
 var players_online = 0;
@@ -72,91 +75,14 @@ var clients = {};
 io.on("connection", function(socket) { // event handler on connection
     
 
-    console.log('wat');
     
-
+    players_online++;
     open_connections++;
     io.sockets.emit("adjustPopulation", { population: open_connections,
         players_online: players_online });
 
   
     
-    //Refactor this hacky method; problem: can have only one emit call
-    //Login handler
-    socket.on("login", function(data) {
-        
-        var handleLogin = function(callback) {
-            pg.connect(conString, function(err, client, done) {
-                if (err != null) { console.log(err); }
-                var query = client.query({
-                    text: "SELECT id, salt, password, banned, admin, " +
-                        "logged_in FROM accounts WHERE username=$1",
-                    values: [data.usn]
-                }, function(err) { if (err != null) { console.log(err); } });
-                query.on("row", function(row, result) { result.addRow(row); });
-                query.on("end", function(result) {
-                    var status = "good";
-                    try {
-                        if (sha512(data.pwd, result.rows[0].salt).hash ===
-                            result.rows[0].password) {
-                            client.query({
-                                text: "UPDATE accounts SET last_login=" +
-                                    "CURRENT_TIMESTAMP, logged_in=TRUE WHERE" +
-                                    " username=$1",
-                                values: [data.usn]
-                            }, function(err) {
-                                if (err != null) { console.log(err); }
-                            });
-                            if (result.rows[0].banned) {
-                                status = "You have been banned";
-                            } else if (result.rows[0].logged_in) {
-                                status = "You are already logged in";
-                            } else {
-                                status = "Authenticated successfully";
-                                players_online++;
-                                socket.broadcast.emit("userLogin",{
-                                    username: data.usn
-                                });
-                                client.query({
-                                    text: "UPDATE accounts SET last_known_ip" +
-                                        "=$1 WHERE username=$2",
-                                    values: [data.ip, data.usn]
-                                }, function(err) {
-                                    if (err != null) { console.log(err); }
-                                });
-                              
-                            }
-                        } else {
-                            status = "Wrong password";
-                          
-                        }
-                        socket.emit("loginResponse", {
-                            status: status,
-                            id: result.rows[0].id,
-                            banned: result.rows[0].banned,
-                            admin: result.rows[0].admin,
-                            username: data.usn
-                        });
-                    } catch (ex) {
-                        status = "Username does not exist";
-                        console.log(ex);
-                        socket.emit("loginResponse", { status: status });
-                    }
-                    done();
-                    callback && callback();
-                });
-            });
-        }
-
-        var emitLast = function() {
-            io.sockets.emit("adjustPopulation", { population: open_connections,
-                players_online: players_online });
-        };
-
-        handleLogin(function() { emitLast(); });
-    });
-
- 
 
   
 
@@ -208,17 +134,7 @@ io.on("connection", function(socket) { // event handler on connection
             open_connections--;
             if (data.id > 0) {
                 players_online--;
-                pg.connect(conString, function(err, client, done) {
-                    if (err != null) { console.log(err); }
-                    client.query({
-                        text: "UPDATE accounts SET logged_in=FALSE WHERE " +
-                            "id=$1",
-                         values: [data.id]   
-                    }, function(err) {
-                        if (err != null) { console.log(err); }
-                    });
-                    done();
-                });
+            
                 console.log("Player " + data.id + " disconnected");
                 delete clients[data.id];
                 

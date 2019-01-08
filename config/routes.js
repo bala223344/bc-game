@@ -3,8 +3,11 @@ var home = require('../app/controllers/home');
 
 module.exports = function (app, passport) {
     
-    app.get('/', home.loggedIn, home.index)
-    
+    app.get('/', home.loggedIn,  home.index)
+    app.get('/info', home.loggedIn, function(req, res) {
+        //console.log(req.user)
+        res.json(req.user);
+    });
 
     app.get('/login',  home.login)
     

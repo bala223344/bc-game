@@ -2,14 +2,15 @@
 
 exports.loggedIn = function(req, res, next)
 {
-    console.log('comgin');
     
 	if (req.isAuthenticated()) { // req.session.passport._id
 
+       
 		next();
 
 	} else {
 
+        
 
 		res.redirect('/login');
 
@@ -18,11 +19,11 @@ exports.loggedIn = function(req, res, next)
 }
 
 exports.index = function(req, res) {
-    console.log('thehw');
-    
-    res.render('home/index', {
-        
-    });
+	
+
+
+	//res.render('home/index', {username:req.user.username, id:req.user.id});
+	res.render('home/index', req.user);
 }
 
 
