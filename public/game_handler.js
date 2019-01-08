@@ -13,7 +13,7 @@ function runGame() {
         game.load.spritesheet("fireball", "images/fireball.png", 64, 64,
             64);
         game.load.spritesheet("gravestone", "images/gravestone.png", 111, 90,
-            4);
+        4);
         game.load.image('healthBar', 'images/health.png');
         game.load.audio("backGroundMusic", "music/bgmusic.mp3");
         game.load.image("tree", "images/tree.png");
@@ -276,7 +276,7 @@ function create() {
 
     socket.emit("playerMovement", { id: id, position: player.position,
         direction: dir, moving: isMoving, attack: attack });
-    for (var p in playerStorage) { //WTF this is the only way to do it
+    for (var p in playerStorage) { // this is the only way to do it
         game.physics.arcade.collide(player, playerStorage[p]);
         if (game.physics.arcade.collide(playerStorage[p],
             fireballs,
