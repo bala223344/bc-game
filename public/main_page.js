@@ -1,21 +1,3 @@
-//get ip
-$.getJSON("https://api.ipify.org?format=jsonp&callback=?", function(json) {
-    ip = json.ip;
-});
-
-//get browser
-if ((!!window.opr && !!opr.addons) || !!window.opera ||
-    navigator.userAgent.indexOf(' OPR/') >= 0) { browser = "Opera"; }
-else if (typeof InstallTrigger !== "undefined") { browser = "Firefox"; }
-else if (Object.prototype.toString.call(window.HTMLElement).indexOf(
-    "Constructor") > 0) { browser = "Safari"; }
-else if (false || !!document.documentMode) { browser = "IE"; }
-else if (!!window.StyleMedia) { browser = "Edge"; }
-else if (!!window.chrome && !!window.chrome.webstore) { browser="Chrome"; }
-else { browser = "Blink"; }
-
-//hide forms
-
 
 function flashMessage(msg) {
     var $d = $("<h1 id='fadingMsg'>" + msg + "</h1>");
@@ -30,12 +12,9 @@ function flashMessage(msg) {
 
 
 
-
-
-
-
 //Adjust population
 socket.on("adjustPopulation", function(data) {
+
     if (admin) {
         document.getElementById("connectionCount").innerHTML =
             "Connections open: " + data.population;
@@ -44,12 +23,11 @@ socket.on("adjustPopulation", function(data) {
         "Players online: " + data.players_online;
 });
 
+$(function () {
+    runGame();
+})
 
 
-
-     
-
-        runGame();
  
 
 //Close window handler

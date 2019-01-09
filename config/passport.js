@@ -28,9 +28,14 @@ const { Client } = require('pg')
 
 
     passport.use(new Strategy({
-        clientID: '531729010137235456',
-        clientSecret: 'ZlsXcZtGnhgmUwiKFEfqr-Q33IyDC57O',
-        callbackURL: 'http://157.230.0.249/auth/discord/callback',
+        // clientID: '531729010137235456',
+        // clientSecret: 'ZlsXcZtGnhgmUwiKFEfqr-Q33IyDC57O',
+        // callbackURL: 'http://157.230.0.249/auth/discord/callback',
+        
+        clientID: '532170882114912256',
+        clientSecret: 'mX7OMrXxJZ95gi3FApjFArC2uGriuKWz',
+        callbackURL: 'http://localhost:8000/auth/discord/callback',
+
         scope: scopes
     }, function(accessToken, refreshToken, profile, done) {
         process.nextTick(function() {
@@ -43,7 +48,6 @@ const { Client } = require('pg')
                 user = res.rows[0];
                 
                 if (user !=null) { 
-                    console.log('eisisi');
                    
                     return done(null, user);
                }
@@ -101,7 +105,6 @@ const { Client } = require('pg')
             //     query.on("end", function(result) {
             //         var usernameExists = false;
             //         if (user !=null) {
-            //             console.log('eisisi');
             //             console.log(user);
                         
             //            return done(null, user);

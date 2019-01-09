@@ -122,6 +122,8 @@ function create() {
 
     });
 
+
+    
     socket.emit("joinGame", { id: id, usn: username,
         position: player.position });
     game.stage.disableVisibilityChange = true;
@@ -271,24 +273,31 @@ function create() {
         else { player.frame  = 24; }
     }
 
+ 
+    
+    
+    
 
+    
+    if(spawningFinished) {
+        socket.emit("playerMovement", { id: id, position: player.position,
+            direction: dir, moving: isMoving, attack: attack });
 
-
-    socket.emit("playerMovement", { id: id, position: player.position,
-        direction: dir, moving: isMoving, attack: attack });
-    for (var p in playerStorage) { // this is the only way to do it
-        game.physics.arcade.collide(player, playerStorage[p]);
-        if (game.physics.arcade.collide(playerStorage[p],
-            fireballs,
-            function(player, fireball) {
-                fireball.kill();
-                playerStorage[p].children[1].crop(new Phaser.Rectangle(0, 0,
-                playerStorage[p].children[1].width - 3, 11));
-            },
-            function() {
-                return true;
-            }, this)) {
-            //empty
+            
+        for (var p in playerStorage) { // this is the only way to do it
+            game.physics.arcade.collide(player, playerStorage[p]);
+            if (game.physics.arcade.collide(playerStorage[p],
+                fireballs,
+                function(player, fireball) {
+                    fireball.kill();
+                    playerStorage[p].children[1].crop(new Phaser.Rectangle(0, 0,
+                    playerStorage[p].children[1].width - 3, 11));
+                },
+                function() {
+                    return true;
+                }, this)) {
+                //empty
+            }
         }
     }
 }
