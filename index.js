@@ -114,9 +114,12 @@ io.on("connection", function(socket) { // event handler on connection
     });
 
     socket.on("takeDamage", function(data) {
-        clients[data.id].hp -= 10;
-        if (clients[data.id].hp <= 0) {
-            io.sockets.emit("killPlayer", { id: data.id });
+        //not dead 
+        if(typeof clients[data.id] !== 'undefined') {
+            clients[data.id].hp -= 10;
+            if (clients[data.id].hp <= 0) {
+                io.sockets.emit("killPlayer", { id: data.id });
+            }
         }
     });
 

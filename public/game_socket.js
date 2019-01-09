@@ -8,12 +8,10 @@ $(function () {
         
    
         if (id > 0) {
-            if (data.id === id) { console.log('returnign dun');
-             return; }
+            if (data.id === id) {              return; }
     
              
             if (!(playerStorage[data.id])) {
-                console.log('aim in');
                 
                 var p = game.add.sprite(data.position.x, data.position.y, "player");
                 loadAnimationFrames(p);
@@ -103,8 +101,17 @@ $(function () {
     
     socket.on("removePlayer", function(data) {
         if (id > 0) {
+            if (data.id != id) {
+            spawningFinished = false   
             playerStorage[data.id].destroy();
             delete playerStorage[data.id];
+            }else {
+                //show death screen
+                alert('you are wasted')
+                $("#death-screen").removeClass("hidden")
+            }
+
+            
         }
     });
     
@@ -119,11 +126,11 @@ $(function () {
             gravestone.animations.play("dead")
             
             player.bringToTop()
-            playerStorage[data.id].kill();
-    
-            delete playerStorage[data.id];
+           // playerStorage[data.id].kill();
+           // playerStorage[data.id].destroy();    
+          //  delete playerStorage[data.id];
            // TODO socket.emit("gravestoneplaced")
-    
+          
             socket.emit("closeWindow", data);
             return;
         } else {

@@ -1,9 +1,11 @@
+<% include ../partials/header %>
+
 <h2 id="connectionCount"></h2>
   <h2 class="main-title" id="playerCount">Players online: </h2>
   <!-- <div id="userInfo"></div> -->
     <a href="/logout">Logout</a>
   <div id="game">
-    <div id="loadPageOptions">
+    <div >
       <!-- <div class="logoSm"><img src="logoSm.png"></div> -->
       <div id="loadPageForms">
      
@@ -13,6 +15,20 @@
       </div>
     </div>
   </div>
+
+  
+  <!-- The Modal -->
+<div id="death-screen" class="modal hidden">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>You are wasted..</p>
+      <a href="/">Respawn</a>
+    </div>
+  
+  </div>
+
   <br>
   <div id="chat">
     <ul id="messages">
@@ -42,5 +58,8 @@
   
     <script src="game_handler.js"></script>
     <script src="game_socket.js"></script>
+    <% include ../partials/footer %>
+
+
 
 

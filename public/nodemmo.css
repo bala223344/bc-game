@@ -112,86 +112,9 @@ body {
   z-index: -1;
 } */
 
-#loadPageOptions {
-    z-index: 3;
-    background-image: url(https://zenzo.io/wp-content/uploads/2018/08/1920-x-1080-bg-02.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    border-top: 1px solid rgba(79, 79, 79, 0.50);
-        border-bottom: 1px solid rgba(79, 79, 79, 0.25);
-}
 
-#loadPageOptions button {
-    width: 300px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: .075rem;
-    background-color: #00d3d5;
-    outline: none;
-    font-weight: 600;
-    white-space: nowrap;
-    text-decoration: none;
-    font-size: 14px;
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid #00d3d5;
-    white-space: nowrap;
-    padding: 1rem 0;
-    line-height: 1.42857143;
-    border-radius: 0px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
 
-#loadPageOptions button:hover {
-    cursor: pointer;
-}
-#registerForm{
-  width: 300px;
-  margin: auto;
-}
-#registerForm button {
-    margin-bottom: 20px;
-}
 
-#register{
-  cursor: pointer;
-}
-
-#changePwd:hover {
-    cursor: pointer;
-}
-
-#changePwd button {
-    background-color: #FFFFFF;
-    border: 2px solid #FFFFFF;
-    width: 120px;
-    height: 45px;
-    margin: 9px;
-}
-
-#changePwd button:hover {
-    cursor: pointer;
-}
-
-#forgotPwd:hover {
-    text-decoration: none;
-    cursor: pointer;
-}
 
 #fadingMsg {
     position: absolute;
@@ -357,42 +280,46 @@ input:-webkit-autofill:active  {
 input:-webkit-autofill {
     -webkit-text-fill-color: #4f4f4f !important;
 }
-.reg-forgot{
-}
 
-#registerPwd{
-  border-top: 2px solid #d1d1d1 !important;
-}
 
-#registerEmail{
-  border-top: 2px solid #d1d1d1 !important;
-}
 
-#closeRegister {
-  font-weight: 600;
-  opacity: .85;
-  cursor: pointer;
-  color: #fff;
-  padding: 0 .25rem;
-}
 
-#submitRegister{
-  color: #67E6A5;
-  font-weight: 600;
-  cursor: pointer;
-  padding: .25rem;
-}
 
-#forgotPwdForm{
-  font-weight: 600;
-  cursor: pointer;
-  color: #fff;
-}
-
-#submitLogin{
-  margin-bottom: 20px;
-}
-
-#submitForgotPwd{
-    margin-bottom: 20px;
-}
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .hidden {
+      display: none;
+  }
