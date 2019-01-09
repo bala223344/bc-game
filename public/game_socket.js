@@ -107,7 +107,6 @@ $(function () {
             delete playerStorage[data.id];
             }else {
                 //show death screen
-                alert('you are wasted')
                 $("#death-screen").removeClass("hidden")
             }
 
