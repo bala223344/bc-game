@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 
 //app.use(express.static(__dirname + "/public"));
-app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 1000 * 3600 * 60 }, resave: true, saveUninitialized: true }));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -76,6 +76,7 @@ io.on("connection", function(socket) { // event handler on connection
     
 
     
+
     players_online++;
     open_connections++;
     io.sockets.emit("adjustPopulation", { population: open_connections,
@@ -98,7 +99,7 @@ io.on("connection", function(socket) { // event handler on connection
 
     //Join game handler
     socket.on("joinGame", function(data) {
-        console.log("Player " + data.id + " joined the game");
+        
         clients[data.id] = { id: data.id, username: data.usn,
             position: data.position, hp: 100 };
 
@@ -108,6 +109,8 @@ io.on("connection", function(socket) { // event handler on connection
                 name: clients[c].username,
                 hp: clients[c].hp });
         }
+
+        io.sockets.emit("spawningFinished");
     });
 
     socket.on("takeDamage", function(data) {
@@ -119,7 +122,10 @@ io.on("connection", function(socket) { // event handler on connection
 
     //Player movement handler
     socket.on("playerMovement", function(data) {
-        if (data.id > 0 && data.id != undefined)  {
+        
+ 
+        
+        if (data.id > 0 && data.id != undefined && clients[data.id])  {
             clients[data.id].position = data.position;
             io.sockets.emit("updatePlayerPosition", { id: data.id, position:
                 data.position, direction: data.direction,

@@ -5,7 +5,7 @@ var bounds;
 var game;
 var blocks;
 
-
+var spawningFinished = false
 var dir = "";
 var isMoving = false;
 var attack = null;

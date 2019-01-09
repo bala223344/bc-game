@@ -29,7 +29,6 @@ exports.index = function(req, res) {
 
 
 exports.login = function(req, res) {
-    console.log('mam');
 
 
 	if (req.isAuthenticated()) {
