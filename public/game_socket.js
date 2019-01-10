@@ -137,9 +137,10 @@ $(function () {
         } else {
            
     
-         
-            player.kill();
-            player = null;
+            if(player) {
+                player.kill();
+                player = null;
+            }
     
             // player = game.add.sprite(
             //     Math.floor((Math.random() * 3200) + 1),
