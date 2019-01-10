@@ -138,8 +138,14 @@ $(function () {
            
     
             if(player) {
+                //present player killed
                 player.kill();
                 player = null;
+                //socket.disconnect();
+                socket.emit("closeWindow", { id: id, usn: username,
+                    position: player.position });
+                
+               // game.destroy()
             }
     
             // player = game.add.sprite(
@@ -156,5 +162,7 @@ $(function () {
         }
     });
     
+
+   
 
 })

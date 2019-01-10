@@ -12,7 +12,8 @@ exports.loggedIn = function(req, res, next)
 
         
 
-		res.redirect('/login');
+		//res.redirect('/login');
+		res.redirect('/auth/discord');
 
 	}
 
