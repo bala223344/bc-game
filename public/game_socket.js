@@ -103,8 +103,10 @@ $(function () {
         if (id > 0) {
             if (data.id != id) {
             spawningFinished = false   
-            playerStorage[data.id].destroy();
-            delete playerStorage[data.id];
+            if(playerStorage[data.id])  {
+                playerStorage[data.id].destroy();
+                delete playerStorage[data.id];
+            }
             }else {
                 //show death screen
                 $("#death-screen").removeClass("hidden")

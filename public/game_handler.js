@@ -163,13 +163,12 @@ function create() {
     }
 
 
+  
+    if(player) {
+        player.body.velocity.x = 0;
+        player.body.velocity.y = 0;
+    }
 
-
-
-
-
-    player.body.velocity.x = 0;
-    player.body.velocity.y = 0;
 
 
 
@@ -268,13 +267,15 @@ function create() {
             attack = "none_";
         }
     } else {
-        player.animations.stop();
-        isMoving = false;
-        attack = false;
-        if (dir === "left") { player.frame = 16; }
-        else if (dir === "right") { player.frame  = 8; }
-        else if (dir === "up") { player.frame  = 0; }
-        else { player.frame  = 24; }
+        if(player) {
+            player.animations.stop();
+            isMoving = false;
+            attack = false;
+            if (dir === "left") { player.frame = 16; }
+            else if (dir === "right") { player.frame  = 8; }
+            else if (dir === "up") { player.frame  = 0; }
+            else { player.frame  = 24; }
+        }
     }
 
  
@@ -283,7 +284,7 @@ function create() {
     
 
     
-    if(spawningFinished) {
+    if(spawningFinished && player) {
         socket.emit("playerMovement", { id: id, position: player.position,
             direction: dir, moving: isMoving, attack: attack });
 
