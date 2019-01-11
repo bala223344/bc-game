@@ -5,10 +5,10 @@ var bounds;
 var game;
 var blocks;
 
-var spawningFinished = false
 var dir = "";
 var isMoving = false;
 var attack = null;
+var sendEvent = false;
 //  this will be useful to have counters..so we can bring the post attack benefits
 var lastAttack = null;
 var isCollingWithTree = false;

@@ -111,7 +111,6 @@ io.on("connection", function(socket) { // event handler on connection
                 hp: clients[c].hp });
         }
 
-        io.sockets.emit("spawningFinished");
     });
 
     socket.on("takeDamage", function(data) {

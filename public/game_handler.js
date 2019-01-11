@@ -128,6 +128,11 @@ function create() {
 
 
     
+
+    console.log(
+        'join enit'
+    );
+    
     socket.emit("joinGame", { id: id, usn: username,
         position: player.position });
     game.stage.disableVisibilityChange = true;
@@ -138,6 +143,7 @@ function create() {
 
     function update() {
 
+        sendEvent = false;
     if (game.physics.arcade.collide(player, fireballs,
         function(player, fireball) {
             player.children[1].crop(new Phaser.Rectangle(0, 0,
@@ -190,7 +196,7 @@ function create() {
         lastMovedDir =  dir = "left";
         isMoving = true;
         attack = false;
-
+        sendEvent = true;
         lastCollidedTree = null;
         treeChopCounter = 0;
 
@@ -200,6 +206,7 @@ function create() {
         player.animations.play("right");
         lastMovedDir = dir = "right";
         isMoving = true;
+        sendEvent = true;
         attack = false;
         lastCollidedTree = null;
         treeChopCounter = 0;
@@ -209,6 +216,7 @@ function create() {
         player.animations.play("up");
         lastMovedDir = dir = "up";
         isMoving = true;
+        sendEvent = true;
         attack = false;
         lastCollidedTree = null;
         treeChopCounter = 0;
@@ -218,6 +226,7 @@ function create() {
         player.animations.play("down");
         lastMovedDir = dir = "down";
         isMoving = true;
+        sendEvent = true;
         attack = false;
         lastCollidedTree = null;
         treeChopCounter = 0;
@@ -229,6 +238,7 @@ function create() {
         player.animations.play("thrust_" + dir);
         isMoving = false;
         attack = "thrust_";
+        sendEvent = true;
         lastAttack = attack;
         var xOffset = player.x;
         var yOffset = player.y;
@@ -244,6 +254,7 @@ function create() {
 
     }
     else if (kKey.isDown) {
+        sendEvent = true;
         var now = new Date().getTime();
         if (now - lastShot > FIREBALL_COOLDOWN) {
             lastShot = now;
@@ -284,9 +295,12 @@ function create() {
     
 
     
-    if(spawningFinished && player) {
-        socket.emit("playerMovement", { id: id, position: player.position,
-            direction: dir, moving: isMoving, attack: attack });
+    if(player) {
+        if(sendEvent) {
+            socket.emit("playerMovement", { id: id, position: player.position,
+                direction: dir, moving: isMoving, attack: attack });
+        }
+        
 
             
         for (var p in playerStorage) { // this is the only way to do it

@@ -28,15 +28,15 @@ $(function () {
             player.bringToTop();
         }
     });
-    socket.on("spawningFinished", function(data) {
-        spawningFinished = true;
-    });
+  
     
     socket.on("updatePlayerPosition", function(data) {
-        if(spawningFinished) {
 
             if (id > 0) {
-                if (data.id === id) { return; }
+                if (data.id === id) { console.log('bsret');
+                console.log(id);
+                
+                 return;  }
                 
                 playerStorage[data.id].position = data.position;
                 //probably player dead 
@@ -93,7 +93,6 @@ $(function () {
                     }
                     playerStorage[data.id].animations.stop();
                 }
-            }
     }
 
 
@@ -102,7 +101,6 @@ $(function () {
     socket.on("removePlayer", function(data) {
         if (id > 0) {
             if (data.id != id) {
-            spawningFinished = false   
             if(playerStorage[data.id])  {
                 playerStorage[data.id].destroy();
                 delete playerStorage[data.id];
@@ -110,6 +108,8 @@ $(function () {
             }else {
                 //show death screen
                 $("#death-screen").removeClass("hidden")
+                socket.disconnect()
+                game.destroy()
             }
 
             
@@ -127,23 +127,26 @@ $(function () {
             gravestone.animations.play("dead")
             
             player.bringToTop()
-           // playerStorage[data.id].kill();
-           // playerStorage[data.id].destroy();    
+            playerStorage[data.id].kill();
+            playerStorage[data.id].destroy();    
           //  delete playerStorage[data.id];
            // TODO socket.emit("gravestoneplaced")
-          
+                     console.log('emit closeWindow');
+
             socket.emit("closeWindow", data);
             return;
         } else {
            
     
             if(player) {
-                //present player killed
+                console.log('                 present player killed')
                 player.kill();
+                player.destroy(); 
                 player = null;
+               
                 //socket.disconnect();
-                socket.emit("closeWindow", { id: id, usn: username,
-                    position: player.position });
+                //socket.emit("closeWindow", { id: id, usn: username,
+                  //  position: player.position });
                 
                // game.destroy()
             }
