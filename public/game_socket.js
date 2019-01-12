@@ -134,7 +134,7 @@ $(function () {
                      console.log('emit closeWindow');
             console.log(data.id);
                 
-            socket.emit("closeWindow", data);
+           // socket.emit("closeWindow", data);
             return;
         } else {
            
