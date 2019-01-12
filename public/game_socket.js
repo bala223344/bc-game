@@ -4,9 +4,6 @@ $(function () {
 
     socket.on("spawnPlayer", function(data) {
 
-   
-        
-   
         if (id > 0) {
             if (data.id === id) {              return; }
     
@@ -82,14 +79,17 @@ $(function () {
                         fireball.body.velocity.y = -1200;
                     } else { fireball.body.velocity.y = 1200; }
                 } else {
+
+
                     if (data.direction === "left") {
-                        playerStorage[data.id].frame = 117;
+16
+                        playerStorage[data.id].frame = 16;
                     } else if (data.direction === "right") {
-                        playerStorage[data.id].frame = 143;
+                        playerStorage[data.id].frame = 8;
                     } else if (data.direction === "up") {
-                        playerStorage[data.id].frame = 104;
+                        playerStorage[data.id].frame = 0;
                     } else {
-                        playerStorage[data.id].frame = 130;
+                        playerStorage[data.id].frame = 24;
                     }
                     playerStorage[data.id].animations.stop();
                 }

@@ -297,8 +297,18 @@ function create() {
     
     if(player) {
         if(sendEvent) {
+            playerStopCalledOnce = false
             socket.emit("playerMovement", { id: id, position: player.position,
                 direction: dir, moving: isMoving, attack: attack });
+        }else {
+            if(!playerStopCalledOnce) {
+                console.log(dir);
+                
+                socket.emit("playerMovement", { id: id, position: player.position,
+                    direction: dir, moving: false, attack: attack });
+                    playerStopCalledOnce = true
+            }
+            
         }
         
 
