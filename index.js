@@ -121,12 +121,12 @@ io.on("connection", function(socket) { // event handler on connection
             if (clients[data.id].hp <= 0) {
                 io.sockets.emit("killPlayer", { id: data.id });
 
-                players_online--;
+              //  players_online--;
             
                 console.log("Player " + data.id + " disconnected");
                 io.sockets.emit("removePlayer", { id: data.id });
-                io.sockets.emit("adjustPopulation", { population: open_connections,
-                    players_online: players_online });
+              //  io.sockets.emit("adjustPopulation", { population: open_connections,
+                //    players_online: players_online });
                 socket.broadcast.emit("userLeft", { username: data.username });
                 delete clients[data.id];
                 
