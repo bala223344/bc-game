@@ -30,8 +30,8 @@ $(function () {
     socket.on("updatePlayerPosition", function(data) {
 
             if (id > 0) {
-                if (data.id === id) { console.log('bsret');
-                console.log(id);
+                if (data.id === id) { 
+   
                 
                  return;  }
                 
