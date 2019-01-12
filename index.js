@@ -184,7 +184,11 @@ io.on("connection", function(socket) { // event handler on connection
 
     socket.on('disconnect', function () {
        
-       
+        players_online--;
+    open_connections--;
+    io.sockets.emit("adjustPopulation", { population: open_connections,
+        players_online: players_online });
+
         console.log("(*(*(*(*(*())))))");
        
        // open_connections--;
