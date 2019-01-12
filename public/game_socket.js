@@ -132,7 +132,8 @@ $(function () {
           //  delete playerStorage[data.id];
            // TODO socket.emit("gravestoneplaced")
                      console.log('emit closeWindow');
-
+            console.log(data.id);
+                
             socket.emit("closeWindow", data);
             return;
         } else {
