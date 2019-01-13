@@ -83,6 +83,8 @@ function sendMessage () {
     }
 }
 
+
+
 // sending message on enter
 $(window).keydown(function (event) {
 // When the client hits ENTER on their keyboard
@@ -90,3 +92,13 @@ $(window).keydown(function (event) {
         sendMessage();
     }
 });
+
+$(function () {
+    $("#inputMessage").focus(function () {
+        game.input.enabled = false
+    })
+    $("#inputMessage").blur(function () {
+        game.input.enabled = true
+    })
+
+})

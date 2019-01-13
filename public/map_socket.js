@@ -3,8 +3,7 @@ $(function () {
     
 
     socket.on("spawnPlayer", function(data) {
-        if (id > 0) {
-                
+
             if (!(playerMapStorage[data.id])) {
                 
                 var p = gameMap.add.sprite(data.position.x / 10  , data.position.y / 10, "player");
@@ -13,7 +12,6 @@ $(function () {
 
             }
        
-        }
             
     })
 
@@ -21,11 +19,9 @@ $(function () {
         
     socket.on("updatePlayerPosition", function(data) {
 
-        if (id > 0) {
                    
             playerMapStorage[data.id].position.x = data.position.x / 10;
             playerMapStorage[data.id].position.y = data.position.y / 10;
-        }
            
         
     });
@@ -34,7 +30,8 @@ $(function () {
     socket.on("killPlayer", function(data) {
           
         playerMapStorage[data.id].kill();
-        playerMapStorage[data.id].destroy();    
+        playerMapStorage[data.id].destroy(); 
+        delete playerMapStorage[data.id]; 
           //  delete playerStorage[data.id];
            // TODO socket.emit("gravestoneplaced")
             return;
