@@ -153,9 +153,9 @@ io.on("connection", function(socket) { // event handler on connection
         var handleClose = function(callback) {
             open_connections--;
             if (data.id > 0) {
-                players_online--;
+               // players_online--;
             
-                console.log("Player " + data.id + " disconnected");
+                console.log("Player " + data.id + " closed");
                 delete clients[data.id];
                 
             }
@@ -168,8 +168,9 @@ io.on("connection", function(socket) { // event handler on connection
         };
 
         var emitLast = function() {
-            io.sockets.emit("adjustPopulation", { population: open_connections,
-                players_online: players_online });
+            //already done on socket disconnect
+          //  io.sockets.emit("adjustPopulation", { population: open_connections,
+           //     players_online: players_online });
         };
 
         socket.broadcast.emit("userLeft", { username: data.username });
@@ -184,12 +185,12 @@ io.on("connection", function(socket) { // event handler on connection
 
     socket.on('disconnect', function () {
        
-        players_online--;
+     players_online--;
     open_connections--;
     io.sockets.emit("adjustPopulation", { population: open_connections,
         players_online: players_online });
 
-        console.log("(*(*(*(*(*())))))");
+        console.log("diconnected");
        
        // open_connections--;
 
