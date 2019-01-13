@@ -106,10 +106,13 @@ $(function () {
                 delete playerStorage[data.id];
             }
             }else {
-                //show death screen
-                $("#death-screen").removeClass("hidden")
-                socket.disconnect()
-                game.destroy()
+                if(data.sd) {
+                    //player is actually killed..not just a refresh page
+                    //show death screen
+                    $("#death-screen").removeClass("hidden")
+                    socket.disconnect()
+                    game.destroy()
+                }
             }
 
             

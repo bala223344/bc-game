@@ -129,10 +129,6 @@ function create() {
 
     
 
-    console.log(
-        'join enit'
-    );
-    
     socket.emit("joinGame", { id: id, usn: username,
         position: player.position });
     game.stage.disableVisibilityChange = true;
@@ -297,12 +293,13 @@ function create() {
     
     if(player) {
         if(sendEvent) {
+            //send event only if there is movment or action
             playerStopCalledOnce = false
             socket.emit("playerMovement", { id: id, position: player.position,
                 direction: dir, moving: isMoving, attack: attack });
         }else {
             if(!playerStopCalledOnce) {
-                
+                //stop event after the key is released
                 socket.emit("playerMovement", { id: id, position: player.position,
                     direction: dir, moving: false, attack: attack });
                     playerStopCalledOnce = true

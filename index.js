@@ -76,15 +76,10 @@ var clients = {};
 io.on("connection", function(socket) { // event handler on connection
     
 
-    
-
     players_online++;
     open_connections++;
     io.sockets.emit("adjustPopulation", { population: open_connections,
         players_online: players_online });
-
-  
-    
 
   
 
@@ -126,9 +121,7 @@ io.on("connection", function(socket) { // event handler on connection
               //  players_online--;
             
                 console.log("Player " + data.id + " disconnected");
-                io.sockets.emit("removePlayer", { id: data.id });
-              //  io.sockets.emit("adjustPopulation", { population: open_connections,
-                //    players_online: players_online });
+                io.sockets.emit("removePlayer", { id: data.id, sd: true });
                 console.log('remove emitted');
                 
                 console.log(data);
@@ -161,7 +154,7 @@ io.on("connection", function(socket) { // event handler on connection
             if (data.id > 0) {
                // players_online--;
             
-                console.log("Player " + data.id + " closed");
+              //  console.log("Player " + data.id + " closed");
                 delete clients[data.id];
                 
             }
@@ -197,11 +190,8 @@ io.on("connection", function(socket) { // event handler on connection
     io.sockets.emit("adjustPopulation", { population: open_connections,
         players_online: players_online });
 
-        console.log("diconnected");
-       
-       // open_connections--;
+      //  console.log("diconnected");
 
-        //clearInterval(tweets);
       });
 });
 
