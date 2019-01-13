@@ -25,6 +25,7 @@ socket.on("adjustPopulation", function(data) {
 
 $(function () {
     runGame();
+    runMap();
 })
 
 
