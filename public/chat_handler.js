@@ -6,6 +6,9 @@ socket.on("userLogin", function (data) {
 
 // tell the chat clients when a user has logged out
 socket.on("userLeft", function (data) {
+    
+    console.log(data);
+    
     log(data.username + ' left');
 });
 

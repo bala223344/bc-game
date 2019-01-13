@@ -112,6 +112,8 @@ io.on("connection", function(socket) { // event handler on connection
                 hp: clients[c].hp });
         }
 
+        socket.broadcast.emit("userLogin", { username: data.usn });
+
     });
 
     socket.on("takeDamage", function(data) {
@@ -127,6 +129,10 @@ io.on("connection", function(socket) { // event handler on connection
                 io.sockets.emit("removePlayer", { id: data.id });
               //  io.sockets.emit("adjustPopulation", { population: open_connections,
                 //    players_online: players_online });
+                console.log('remove emitted');
+                
+                console.log(data);
+                
                 socket.broadcast.emit("userLeft", { username: data.username });
                 delete clients[data.id];
                 
@@ -173,6 +179,7 @@ io.on("connection", function(socket) { // event handler on connection
            //     players_online: players_online });
         };
 
+        
         socket.broadcast.emit("userLeft", { username: data.username });
 
         handleClose(function() {

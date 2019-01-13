@@ -148,7 +148,7 @@ function create() {
         function(player, fireball) {
             player.children[1].crop(new Phaser.Rectangle(0, 0,
                 player.children[1].width - 3, 11));
-            socket.emit("takeDamage", { id: id });
+            socket.emit("takeDamage", { id: id, username: username });
             fireball.kill();
         },
         function(player, fireball) {
@@ -302,7 +302,6 @@ function create() {
                 direction: dir, moving: isMoving, attack: attack });
         }else {
             if(!playerStopCalledOnce) {
-                console.log(dir);
                 
                 socket.emit("playerMovement", { id: id, position: player.position,
                     direction: dir, moving: false, attack: attack });
